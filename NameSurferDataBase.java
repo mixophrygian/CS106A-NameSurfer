@@ -33,7 +33,7 @@ public class NameSurferDataBase implements NameSurferConstants {
 			while(true) {
 				String line = rd.readLine();
 				if(line == null) break;
-				NameSurferEntry nameSurfer = new NameSurferEntry(line);
+				NameSurferEntry nameSurfer = new NameSurferEntry(line.toLowerCase());
 				namesDatabase.put(nameSurfer.getName(), nameSurfer);
 			}
 			rd.close();

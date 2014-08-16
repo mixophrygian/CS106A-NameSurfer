@@ -113,7 +113,7 @@ public class NameSurferGraph extends GCanvas
 				GLine line = new GLine(currentX, currentRankY, nextX, nextRankY);
 				line.setColor(color);
 				add(line);
-				GLabel name = new GLabel(""+thisSurfer.getName()+" " + "("+currentRank+")", currentX, currentRankY);
+				GLabel name = new GLabel(""+thisSurfer.getName().substring(0, 1).toUpperCase() + thisSurfer.getName().substring(1) + " " + "("+currentRank+")", currentX, currentRankY);
 				if(currentRank == 0) {
 					name.setLabel(""+thisSurfer.getName()+"*");
 				}

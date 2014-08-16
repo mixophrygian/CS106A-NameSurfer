@@ -64,6 +64,7 @@ public class NameSurfer extends Program implements NameSurferConstants {
 		if (source == Clear) {
 			nameGraph.clear();
 			nameGraph.update();
+			textField.setText(null);
 		}
 		}
 	

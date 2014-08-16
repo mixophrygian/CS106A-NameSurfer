@@ -50,12 +50,15 @@ public class NameSurfer extends Program implements NameSurferConstants {
 		Object source = e.getSource();
 		if (source == textField || source == Graph) {
 			String userEntry = textField.getText();
+			userEntry = userEntry.toLowerCase();
 			currentSurfer = dataBaseONames.findEntry(userEntry);
 			if(currentSurfer != null){
 			//add current Surfer to the database and update!//
 				nameGraph.addEntry(currentSurfer);
 				nameGraph.update();
 
+		}else{
+			textField.setText(userEntry.substring(0,1).toUpperCase() + userEntry.substring(1) + " is a fairly unpopular name");
 		}
 		}
 		if (source == Clear) {

@@ -91,43 +91,54 @@ public class NameSurferGraph extends GCanvas
 			int nextRank;
 			int currentRankY;
 			int nextRankY;
-			for ( int j = 0; j < NDECADES; j++) {
+			for ( int j = 0; j < NDECADES - 1; j++) {
 				currentRank = thisSurfer.getRank(j);
-				
 				if(currentRank == 0){
-					currentRankY = bottomHorizontalLineY;
+				currentRankY = bottomHorizontalLineY;
 				}else{
 				currentRankY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE * 2) * currentRank / MAX_RANK;
 				}
 				
-				if(j == (NDECADES-1)){
-					break;
-				}else{
 				nextRank = thisSurfer.getRank(j+1);
-				}
+				
 				if(nextRank == 0){
-					nextRankY = bottomHorizontalLineY;
-				}else{
+				nextRankY = bottomHorizontalLineY;
+				}
+				else{
 				nextRankY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE * 2) * nextRank / MAX_RANK;
 				}
+				
 				GLine line = new GLine(currentX, currentRankY, nextX, nextRankY);
 				line.setColor(color);
 				add(line);
 				GLabel name = new GLabel(""+thisSurfer.getName().substring(0, 1).toUpperCase() + thisSurfer.getName().substring(1) + " " + "("+currentRank+")", currentX, currentRankY);
+				
 				if(currentRank == 0) {
-					name.setLabel(""+thisSurfer.getName()+"*");
+				name.setLabel(""+thisSurfer.getName().substring(0, 1).toUpperCase() + thisSurfer.getName().substring(1) +"*");
 				}
+				
 				name.setColor(color);
 				add(name);
+				
+				if(j == NDECADES - 2){
+					
+					GLabel lastName = new GLabel(""+thisSurfer.getName().substring(0, 1).toUpperCase() + thisSurfer.getName().substring(1) + " " + "("+nextRank+")", nextX, nextRankY);
+					
+					if(nextRank == 0) {
+					lastName.setLabel(""+thisSurfer.getName().substring(0, 1).toUpperCase() + thisSurfer.getName().substring(1) +"*");
+					}
+					
+					lastName.setColor(color);
+					add(lastName);
+				}
+				
 				currentX = nextX;
 				nextX = currentX + lineSpaceWidth;
 				currentRank = nextRank;
 				
+				}
 			}
-			
 		}
-		
-	}
 
 
 	public Color selectColor(int i) {
